@@ -1,97 +1,219 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# React Native Todo App
 
-# Getting Started
+A clean and minimal React Native Todo application with user authentication and local storage using AsyncStorage.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Features
 
-## Step 1: Start Metro
+### 🔐 Authentication
+- User signup with email validation
+- User login with stored credentials
+- Secure password handling
+- Persistent login sessions
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+### 📝 Todo Management
+- Add new todos with multi-line text support
+- Edit existing todos inline
+- Delete todos with confirmation
+- Mark todos as complete/incomplete
+- Real-time todo statistics (pending, completed, total)
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+### 💾 Local Storage
+- All user data stored locally using AsyncStorage
+- Separate todo lists for each user
+- No internet connection required
+- Data persists between app sessions
 
-```sh
-# Using npm
-npm start
+### 🎨 Clean UI
+- Minimal and modern design
+- Responsive layout
+- Smooth animations
+- Intuitive user experience
+- Dark/light mode support
 
-# OR using Yarn
-yarn start
-```
+## Tech Stack
 
-## Step 2: Build and run your app
+- **React Native** 0.80.1
+- **React Navigation** 6.x for navigation
+- **AsyncStorage** for local data persistence
+- **TypeScript** for type safety
+- **React Hooks** for state management
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+## Prerequisites
+
+- Node.js (>=18)
+- React Native CLI
+- Android Studio (for Android)
+- Xcode (for iOS)
+
+## Installation
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. For iOS (if running on macOS):
+   ```bash
+   cd ios && pod install && cd ..
+   ```
+
+## Running the App
 
 ### Android
-
-```sh
-# Using npm
+```bash
 npm run android
-
-# OR using Yarn
-yarn android
 ```
 
 ### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
+```bash
 npm run ios
-
-# OR using Yarn
-yarn ios
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+### Start Metro Bundler
+```bash
+npm start
+```
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+## App Structure
 
-## Step 3: Modify your app
+```
+src/
+├── components/
+│   └── TodoItem.tsx          # Individual todo item component
+├── screens/
+│   ├── LoginScreen.tsx       # User login screen
+│   ├── SignupScreen.tsx      # User registration screen
+│   └── DashboardScreen.tsx   # Main todo dashboard
+├── services/
+│   └── storage.ts           # AsyncStorage service
+├── types/
+│   └── index.ts             # TypeScript type definitions
+└── utils/
+    └── AuthContext.tsx      # Authentication context provider
+```
 
-Now that you have successfully run the app, let's make changes!
+## Usage Guide
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+### Getting Started
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+1. **First Time Setup**
+   - Launch the app
+   - Tap "Sign Up" to create a new account
+   - Enter your name, email, and password
+   - Tap "Create Account"
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+2. **Logging In**
+   - Enter your email and password
+   - Tap "Sign In"
+   - You'll be redirected to the dashboard
 
-## Congratulations! :tada:
+### Managing Todos
 
-You've successfully run and modified your React Native App. :partying_face:
+1. **Add a Todo**
+   - Type your todo in the input field
+   - Tap "Add" button
+   - Your todo will appear in the list
 
-### Now what?
+2. **Complete a Todo**
+   - Tap the circle checkbox next to any todo
+   - Completed todos will be crossed out
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+3. **Edit a Todo**
+   - Tap the edit icon (✏️) next to any todo
+   - Modify the text and tap "Save"
+   - Or tap "Cancel" to discard changes
 
-# Troubleshooting
+4. **Delete a Todo**
+   - Tap the delete icon (🗑️) next to any todo
+   - Confirm deletion in the popup
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+### Dashboard Features
 
-# Learn More
+- **Statistics Cards**: View pending, completed, and total todo counts
+- **User Greeting**: Personalized welcome message
+- **Logout**: Tap the logout button to sign out
 
-To learn more about React Native, take a look at the following resources:
+## Data Storage
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+The app uses AsyncStorage to store:
+- User accounts and credentials
+- Individual todo lists per user
+- Current session information
+
+Data is automatically saved and restored when the app is reopened.
+
+## Security Notes
+
+- Passwords are stored as plain text (for demo purposes)
+- In production, implement proper password hashing
+- Consider adding input validation and sanitization
+- Add rate limiting for authentication attempts
+
+## Development
+
+### Key Components
+
+1. **AuthContext**: Manages authentication state and user sessions
+2. **StorageService**: Handles all AsyncStorage operations
+3. **TodoItem**: Reusable component for todo items
+4. **Navigation**: Handles screen transitions and authentication flow
+
+### Adding Features
+
+To add new features:
+1. Define types in `src/types/index.ts`
+2. Add storage methods in `src/services/storage.ts`
+3. Create/update components in `src/components/`
+4. Add screens in `src/screens/`
+
+## Testing
+
+Run tests with:
+```bash
+npm test
+```
+
+## Build for Production
+
+### Android
+```bash
+cd android
+./gradlew assembleRelease
+```
+
+### iOS
+```bash
+cd ios
+xcodebuild -workspace MyToDoApp.xcworkspace -scheme MyToDoApp -configuration Release
+```
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Metro bundler issues**
+   - Clear cache: `npx react-native start --reset-cache`
+
+2. **Android build issues**
+   - Clean build: `cd android && ./gradlew clean && cd ..`
+
+3. **iOS build issues**
+   - Clean build folder in Xcode
+   - Re-run `pod install`
+
+## License
+
+This project is for educational purposes. Feel free to use and modify as needed.
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## Support
+
+For issues and questions, please create an issue in the repository.
